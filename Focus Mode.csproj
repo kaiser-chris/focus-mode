@@ -94,19 +94,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cog-solid.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\close-active.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close-normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\error.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\info.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cog-solid-active.png" />
