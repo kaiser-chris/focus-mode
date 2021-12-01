@@ -106,6 +106,7 @@
     <None Include="Resources\cog-solid-normal.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\About.txt" />
     <Content Include="Resources\eye-slash-regular.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

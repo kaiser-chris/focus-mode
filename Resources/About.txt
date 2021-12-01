@@ -1,0 +1,7 @@
+Developed by Chris Kaiser
+
+Source Code:
+https://github.com/kaiser-chris/focus-mode
+
+Image License
+https://fontawesome.com/license

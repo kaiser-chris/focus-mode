@@ -32,11 +32,12 @@
             this.LabelApplicationTitle = new System.Windows.Forms.Label();
             this.LabelUpdateRate = new System.Windows.Forms.Label();
             this.PanelTitle = new System.Windows.Forms.Panel();
+            this.ButtonClose = new System.Windows.Forms.Panel();
             this.PanelSeperator02 = new System.Windows.Forms.Panel();
             this.ComboScreens = new System.Windows.Forms.ComboBox();
             this.SliderOpacity = new System.Windows.Forms.TrackBar();
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.ButtonClose = new System.Windows.Forms.Panel();
+            this.ButtonAbout = new System.Windows.Forms.Button();
             this.PanelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SliderOpacity)).BeginInit();
             this.SuspendLayout();
@@ -60,9 +61,9 @@
             this.LabelClientIdentifier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             this.LabelClientIdentifier.Location = new System.Drawing.Point(12, 54);
             this.LabelClientIdentifier.Name = "LabelClientIdentifier";
-            this.LabelClientIdentifier.Size = new System.Drawing.Size(41, 13);
+            this.LabelClientIdentifier.Size = new System.Drawing.Size(85, 13);
             this.LabelClientIdentifier.TabIndex = 100;
-            this.LabelClientIdentifier.Text = "Screen";
+            this.LabelClientIdentifier.Text = "Hidden Screen:";
             // 
             // LabelApplicationTitle
             // 
@@ -99,6 +100,18 @@
             this.PanelTitle.Name = "PanelTitle";
             this.PanelTitle.Size = new System.Drawing.Size(408, 30);
             this.PanelTitle.TabIndex = 100;
+            // 
+            // ButtonClose
+            // 
+            this.ButtonClose.BackgroundImage = global::FocusMode.Properties.Resources.close_normal;
+            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonClose.Location = new System.Drawing.Point(383, 8);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(14, 14);
+            this.ButtonClose.TabIndex = 100;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            this.ButtonClose.MouseEnter += new System.EventHandler(this.ButtonClose_HoverEnter);
+            this.ButtonClose.MouseLeave += new System.EventHandler(this.ButtonClose_HoverLeave);
             // 
             // PanelSeperator02
             // 
@@ -142,17 +155,17 @@
             this.TrayIcon.Visible = true;
             this.TrayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseDoubleClick);
             // 
-            // ButtonClose
+            // ButtonAbout
             // 
-            this.ButtonClose.BackgroundImage = global::FocusMode.Properties.Resources.close_normal;
-            this.ButtonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ButtonClose.Location = new System.Drawing.Point(383, 8);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(14, 14);
-            this.ButtonClose.TabIndex = 100;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-            this.ButtonClose.MouseEnter += new System.EventHandler(this.ButtonClose_HoverEnter);
-            this.ButtonClose.MouseLeave += new System.EventHandler(this.ButtonClose_HoverLeave);
+            this.ButtonAbout.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ButtonAbout.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.ButtonAbout.Location = new System.Drawing.Point(12, 157);
+            this.ButtonAbout.Name = "ButtonAbout";
+            this.ButtonAbout.Size = new System.Drawing.Size(94, 23);
+            this.ButtonAbout.TabIndex = 107;
+            this.ButtonAbout.Text = "About";
+            this.ButtonAbout.UseVisualStyleBackColor = true;
+            this.ButtonAbout.Click += new System.EventHandler(this.ButtonAbout_Click);
             // 
             // Settings
             // 
@@ -160,6 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.ClientSize = new System.Drawing.Size(408, 192);
+            this.Controls.Add(this.ButtonAbout);
             this.Controls.Add(this.SliderOpacity);
             this.Controls.Add(this.ComboScreens);
             this.Controls.Add(this.PanelSeperator02);
@@ -194,6 +208,7 @@
         private System.Windows.Forms.ComboBox ComboScreens;
         private System.Windows.Forms.TrackBar SliderOpacity;
         private System.Windows.Forms.NotifyIcon TrayIcon;
+        private System.Windows.Forms.Button ButtonAbout;
     }
 }
 
