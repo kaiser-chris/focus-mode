@@ -3,5 +3,10 @@ Developed by Chris Kaiser
 Source Code:
 https://github.com/kaiser-chris/focus-mode
 
+Image Attribution
+ - Cog Icon Normal by Font Awesome
+ - Cog Icon Active by Font Awesome
+ - Eye Slash by Font Awesome
+
 Image License
 https://fontawesome.com/license
