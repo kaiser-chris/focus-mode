@@ -51,12 +51,13 @@ namespace FocusMode
             ContextMenu trayMenu = new ContextMenu();
             trayMenu.MenuItems.Add("Close", MenuClose);
             TrayIcon.ContextMenu = trayMenu;
+            viewBlocker.Opacity = 0;
             viewBlocker.Show();
-            viewBlocker.Visible = true;
-            viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
             Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
             ResetWindowLocation(selectedScreen);
             viewBlocker.FocusMode(selectedScreen);
+            viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
+            viewBlocker.Visible = !CheckBoxMinimized.Checked;
         }
 
         private void MenuClose(object sender, EventArgs e) {
@@ -100,12 +101,14 @@ namespace FocusMode
         {
             SliderOpacity.Value = Properties.Settings.Default.Opacity;
             ComboScreens.SelectedIndex = Properties.Settings.Default.Screen;
+            CheckBoxMinimized.Checked = Properties.Settings.Default.Minimized;
         }
 
         private void SaveProperties()
         {
             Properties.Settings.Default.Opacity = SliderOpacity.Value;
             Properties.Settings.Default.Screen = ComboScreens.SelectedIndex;
+            Properties.Settings.Default.Minimized = CheckBoxMinimized.Checked;
             viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
             Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
             ResetWindowLocation(selectedScreen);

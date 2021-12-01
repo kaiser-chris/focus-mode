@@ -38,15 +38,18 @@
             this.SliderOpacity = new System.Windows.Forms.TrackBar();
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.ButtonAbout = new System.Windows.Forms.Button();
+            this.CheckBoxMinimized = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SliderOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonSave
             // 
+            this.ButtonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ButtonSave.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.ButtonSave.Location = new System.Drawing.Point(303, 157);
+            this.ButtonSave.Location = new System.Drawing.Point(302, 182);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(94, 23);
             this.ButtonSave.TabIndex = 7;
@@ -115,8 +118,10 @@
             // 
             // PanelSeperator02
             // 
+            this.PanelSeperator02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelSeperator02.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.PanelSeperator02.Location = new System.Drawing.Point(0, 142);
+            this.PanelSeperator02.Location = new System.Drawing.Point(0, 166);
             this.PanelSeperator02.Name = "PanelSeperator02";
             this.PanelSeperator02.Size = new System.Drawing.Size(408, 2);
             this.PanelSeperator02.TabIndex = 100;
@@ -157,9 +162,10 @@
             // 
             // ButtonAbout
             // 
+            this.ButtonAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAbout.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ButtonAbout.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.ButtonAbout.Location = new System.Drawing.Point(12, 157);
+            this.ButtonAbout.Location = new System.Drawing.Point(12, 182);
             this.ButtonAbout.Name = "ButtonAbout";
             this.ButtonAbout.Size = new System.Drawing.Size(94, 23);
             this.ButtonAbout.TabIndex = 107;
@@ -167,12 +173,34 @@
             this.ButtonAbout.UseVisualStyleBackColor = true;
             this.ButtonAbout.Click += new System.EventHandler(this.ButtonAbout_Click);
             // 
+            // CheckBoxMinimized
+            // 
+            this.CheckBoxMinimized.AutoSize = true;
+            this.CheckBoxMinimized.Location = new System.Drawing.Point(120, 130);
+            this.CheckBoxMinimized.Name = "CheckBoxMinimized";
+            this.CheckBoxMinimized.Size = new System.Drawing.Size(15, 14);
+            this.CheckBoxMinimized.TabIndex = 108;
+            this.CheckBoxMinimized.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.label1.Location = new System.Drawing.Point(12, 130);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.TabIndex = 109;
+            this.label1.Text = "Start minimized:";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(408, 192);
+            this.ClientSize = new System.Drawing.Size(408, 217);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CheckBoxMinimized);
             this.Controls.Add(this.ButtonAbout);
             this.Controls.Add(this.SliderOpacity);
             this.Controls.Add(this.ComboScreens);
@@ -209,6 +237,8 @@
         private System.Windows.Forms.TrackBar SliderOpacity;
         private System.Windows.Forms.NotifyIcon TrayIcon;
         private System.Windows.Forms.Button ButtonAbout;
+        private System.Windows.Forms.CheckBox CheckBoxMinimized;
+        private System.Windows.Forms.Label label1;
     }
 }
 
