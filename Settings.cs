@@ -48,12 +48,19 @@ namespace FocusMode
         private void Settings_Load(object sender, EventArgs e)
         {
             LoadProperties();
+            ContextMenu trayMenu = new ContextMenu();
+            trayMenu.MenuItems.Add("Close", MenuClose);
+            TrayIcon.ContextMenu = trayMenu;
             viewBlocker.Show();
             viewBlocker.Visible = true;
             viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
             Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
             ResetWindowLocation(selectedScreen);
             viewBlocker.FocusMode(selectedScreen);
+        }
+
+        private void MenuClose(object sender, EventArgs e) {
+            Application.Exit();
         }
 
         private void ButtonClose_Click(object sender, EventArgs e)
