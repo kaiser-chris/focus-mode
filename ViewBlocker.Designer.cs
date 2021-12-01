@@ -48,6 +48,7 @@ namespace FocusMode
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(20, 20);
             this.ButtonClose.TabIndex = 1;
+            this.ButtonClose.TabStop = false;
             this.ButtonClose.UseVisualStyleBackColor = false;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             this.ButtonClose.MouseEnter += new System.EventHandler(this.ButtonClose_MouseEnter);
@@ -70,6 +71,7 @@ namespace FocusMode
             this.ButtonSettings.Name = "ButtonSettings";
             this.ButtonSettings.Size = new System.Drawing.Size(20, 20);
             this.ButtonSettings.TabIndex = 0;
+            this.ButtonSettings.TabStop = false;
             this.ButtonSettings.UseVisualStyleBackColor = false;
             this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             this.ButtonSettings.MouseEnter += new System.EventHandler(this.ButtonSettings_MouseEnter);
