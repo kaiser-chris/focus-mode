@@ -40,7 +40,7 @@ namespace FocusMode
         }
 
         private void ViewBlocker_Click(object sender, EventArgs e) {
-            WindowState = FormWindowState.Minimized;
+            this.Visible = false;
             settings.Visible = false;
         }
 

@@ -124,7 +124,7 @@ namespace FocusMode
         }
 
         private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
-            viewBlocker.WindowState = FormWindowState.Normal;
+            viewBlocker.Visible = !viewBlocker.Visible;
         }
 
         private void ButtonAbout_Click(object sender, EventArgs e) {
