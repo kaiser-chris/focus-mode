@@ -26,7 +26,7 @@ namespace FocusMode
 
         public void ShowSettings(Screen screen) {
             Visible = true;
-            Opacity = 100;
+            Opacity = 1;
             WindowState = FormWindowState.Normal;
             ResetWindowLocation(screen);
         }
@@ -133,7 +133,11 @@ namespace FocusMode
         private void LoadProperties()
         {
             SliderOpacity.Value = Properties.Settings.Default.Opacity;
-            ComboScreens.SelectedIndex = Properties.Settings.Default.Screen;
+            if (screens.Count < Properties.Settings.Default.Screen + 1) {
+                ComboScreens.SelectedIndex = 0;
+            } else {
+                ComboScreens.SelectedIndex = Properties.Settings.Default.Screen;
+            }
             CheckBoxMinimized.Checked = Properties.Settings.Default.Minimized;
         }
 
