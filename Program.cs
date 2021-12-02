@@ -15,10 +15,7 @@ namespace FocusMode
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Settings settingsForm = new Settings() {
-                Visible = false
-            };
-            Application.Run(settingsForm);
+            Application.Run(new Settings());
         }
     }
 }
