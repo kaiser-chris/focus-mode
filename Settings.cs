@@ -59,8 +59,11 @@ namespace FocusMode
         /// </summary>
         #region Settings Dialog Elements
 
-        private void Settings_Load(object sender, EventArgs e)
-        {
+        private void Settings_Load(object sender, EventArgs e) {
+            if (screens.Count <= 1) {
+                MessageBox.Show("Need at least two monitors for this application to work", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
             ContextMenu trayMenu = new ContextMenu();
             trayMenu.MenuItems.Add("Focus", MenuFocusMode);
             trayMenu.MenuItems.Add("-");
