@@ -43,7 +43,7 @@ namespace FocusMode
                 return;
             }
             foreach(var blocker in blockers) {
-                blocker.Value.Opacity = opacity;
+                blocker.Value.Opacity = (double) opacity / 100;
             }
         }
 
