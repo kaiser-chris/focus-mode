@@ -64,9 +64,9 @@
             this.LabelScreen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             this.LabelScreen.Location = new System.Drawing.Point(12, 54);
             this.LabelScreen.Name = "LabelScreen";
-            this.LabelScreen.Size = new System.Drawing.Size(85, 13);
+            this.LabelScreen.Size = new System.Drawing.Size(90, 13);
             this.LabelScreen.TabIndex = 100;
-            this.LabelScreen.Text = "Hidden Screen:";
+            this.LabelScreen.Text = "Focused Screen:";
             // 
             // LabelApplicationTitle
             // 
@@ -137,7 +137,6 @@
             this.ComboScreens.Name = "ComboScreens";
             this.ComboScreens.Size = new System.Drawing.Size(277, 21);
             this.ComboScreens.TabIndex = 1;
-            this.ComboScreens.SelectedIndexChanged += new System.EventHandler(this.ComboScreens_SelectedIndexChanged);
             // 
             // SliderOpacity
             // 
@@ -215,7 +214,6 @@
             this.ShowInTaskbar = false;
             this.Text = "Settings";
             this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Settings_Load);
             this.PanelTitle.ResumeLayout(false);
             this.PanelTitle.PerformLayout();

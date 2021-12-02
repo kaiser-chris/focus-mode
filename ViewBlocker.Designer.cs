@@ -93,7 +93,6 @@ namespace FocusMode
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "View Blocker";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ViewBlocker_Load);
             this.Click += new System.EventHandler(this.ViewBlocker_Click);
             this.ResumeLayout(false);
 

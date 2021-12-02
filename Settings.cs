@@ -7,14 +7,12 @@ namespace FocusMode
 {
 	public partial class Settings : Form
     {
-
         private SortedDictionary<string, Screen> screens = new SortedDictionary<string, Screen>();
-        private ViewBlocker viewBlocker;
+        private FocusManager manager;
 
         public Settings()
         {
             InitializeComponent();
-            viewBlocker = new ViewBlocker(this);
             Screen[] allScreens = Screen.AllScreens;
             for (int i = 0; i < allScreens.Length; i++) {
                 screens.Add("Diplay 0" + (i + 1), allScreens[i]);
@@ -22,14 +20,26 @@ namespace FocusMode
             ComboScreens.DataSource = new BindingSource(screens, null);
             ComboScreens.DisplayMember = "Key";
             ComboScreens.ValueMember = "Value";
+            LoadProperties();
+            manager = new FocusManager(this);
         }
 
-        public void ShowSettings()
-        {
+        public void ShowSettings(Screen screen) {
             Visible = true;
+            Opacity = 100;
             WindowState = FormWindowState.Normal;
-            Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
-            ResetWindowLocation(selectedScreen);
+            ResetWindowLocation(screen);
+        }
+
+        public void HideSettings() {
+            Visible = false;
+            Opacity = 0;
+            WindowState = FormWindowState.Minimized;
+            ShowInTaskbar = false;
+        }
+
+        public int GetOpacity() {
+            return SliderOpacity.Value;
         }
 
         private void ResetWindowLocation(Screen screen)
@@ -37,8 +47,12 @@ namespace FocusMode
             StartPosition = FormStartPosition.Manual;
             Rectangle resolution = screen.Bounds;
 			Point location = new Point(screen.WorkingArea.Left + resolution.Width - Width, screen.WorkingArea.Top + resolution.Height - Height);
-			Location = location;
-		}
+            Location = location;
+        }
+
+        private Screen GetSelectedScreen() {
+            return ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
+        }
 
         /// <summary>
         /// Settings dialog elements
@@ -47,28 +61,32 @@ namespace FocusMode
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            LoadProperties();
             ContextMenu trayMenu = new ContextMenu();
+            trayMenu.MenuItems.Add("Focus", MenuFocusMode);
+            trayMenu.MenuItems.Add("-");
             trayMenu.MenuItems.Add("Close", MenuClose);
             TrayIcon.ContextMenu = trayMenu;
-            viewBlocker.Opacity = 0;
-            viewBlocker.Show();
-            Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
-            ResetWindowLocation(selectedScreen);
-            viewBlocker.FocusMode(selectedScreen);
-            viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
-            viewBlocker.Visible = !CheckBoxMinimized.Checked;
+            Screen selectedScreen = GetSelectedScreen();
+            if (!CheckBoxMinimized.Checked) {
+                manager.Focus(selectedScreen);
+            }
+            HideSettings();
         }
 
         private void MenuClose(object sender, EventArgs e) {
             Application.Exit();
         }
 
+        private void MenuFocusMode(object sender, EventArgs e) {
+            Screen selectedScreen = GetSelectedScreen();
+            manager.Focus(selectedScreen);
+        }
+
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             LoadProperties();
-            viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
-            Visible = false;
+            manager.SetOpacity(SliderOpacity.Value);
+            HideSettings();
         }
 
 		private void ButtonClose_HoverEnter(object sender, EventArgs e)
@@ -84,10 +102,22 @@ namespace FocusMode
 		private void ButtonSave_Click(object sender, EventArgs e)
         {
             SaveProperties();
-            Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
-            ResetWindowLocation(selectedScreen);
-            viewBlocker.FocusMode(selectedScreen);
+            Screen selectedScreen = GetSelectedScreen();
+            manager.Focus(selectedScreen);
+            manager.SetOpacity(SliderOpacity.Value);
             Visible = false;
+        }
+
+        private void SliderOpacity_Scroll(object sender, EventArgs e) {
+            manager.SetOpacity(SliderOpacity.Value);
+        }
+
+        private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
+            MenuFocusMode(sender, e);
+        }
+
+        private void ButtonAbout_Click(object sender, EventArgs e) {
+            MessageBox.Show(Properties.Resources.About, "About Focus Mode");
         }
 
         #endregion Settings Dialog Elements
@@ -109,29 +139,9 @@ namespace FocusMode
             Properties.Settings.Default.Opacity = SliderOpacity.Value;
             Properties.Settings.Default.Screen = ComboScreens.SelectedIndex;
             Properties.Settings.Default.Minimized = CheckBoxMinimized.Checked;
-            viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
-            Screen selectedScreen = ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
-            ResetWindowLocation(selectedScreen);
-            viewBlocker.FocusMode(selectedScreen);
             Properties.Settings.Default.Save();
         }
 
         #endregion Properties
-
-        private void SliderOpacity_Scroll(object sender, EventArgs e) {
-            viewBlocker.Opacity = (double) SliderOpacity.Value / 100;
-        }
-
-        private void ComboScreens_SelectedIndexChanged(object sender, EventArgs e) {
-
-        }
-
-        private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
-            viewBlocker.Visible = !viewBlocker.Visible;
-        }
-
-        private void ButtonAbout_Click(object sender, EventArgs e) {
-            MessageBox.Show(Properties.Resources.About, "About Focus Mode");
-        }
     }
 }

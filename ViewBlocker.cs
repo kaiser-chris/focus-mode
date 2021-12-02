@@ -1,51 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FocusMode
 {
     public partial class ViewBlocker : Form
     {
+        FocusManager manager;
+        Screen screen;
 
-        Settings settings;
-
-        public ViewBlocker(Settings settings) {
+        public ViewBlocker(Screen screen, FocusManager manager) {
             InitializeComponent();
-            this.settings = settings;
-        }
-
-        public void FocusMode(Screen screen) {
+            this.screen = screen;
+            this.manager = manager;
             ResetWindowLocation(screen);
-            Visible = true;
         }
 
         private void ResetWindowLocation(Screen screen) {
+            WindowState = FormWindowState.Normal;
             Width = screen.Bounds.Width;
             Height = screen.Bounds.Height;
-            Point screenLocation = new Point();
-            screenLocation.X = screen.WorkingArea.Left;
-            screenLocation.Y = screen.WorkingArea.Top;
+            Point screenLocation = new Point {
+                X = screen.WorkingArea.Left,
+                Y = screen.WorkingArea.Top
+            };
             Location = screenLocation;
-            WindowState = FormWindowState.Normal;
-        }
-
-        private void ViewBlocker_Load(object sender, EventArgs e) {
-            settings.Visible = false;
         }
 
         private void ViewBlocker_Click(object sender, EventArgs e) {
-            this.Visible = false;
-            settings.Visible = false;
+            manager.HideFocus();
         }
 
         private void ButtonSettings_Click(object sender, EventArgs e) {
-            settings.ShowSettings();
+            manager.ShowSettings(screen);
         }
 
         private void ButtonSettings_MouseEnter(object sender, EventArgs e) {
