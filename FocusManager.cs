@@ -23,6 +23,7 @@ namespace FocusMode
         public void Focus(Screen screen) {
             foreach (var blocker in blockers) {
                 if (blocker.Key == screen) {
+                    blocker.Value.Visible = false;
                     continue;
                 }
                 blocker.Value.Visible = true;
