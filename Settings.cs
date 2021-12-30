@@ -15,7 +15,7 @@ namespace FocusMode
             InitializeComponent();
             Screen[] allScreens = Screen.AllScreens;
             for (int i = 0; i < allScreens.Length; i++) {
-                screens.Add("Diplay 0" + (i + 1), allScreens[i]);
+                screens.Add("Display 0" + (i + 1), allScreens[i]);
             }
             ComboScreens.DataSource = new BindingSource(screens, null);
             ComboScreens.DisplayMember = "Key";
