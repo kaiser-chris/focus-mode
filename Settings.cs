@@ -13,15 +13,7 @@ namespace FocusMode
         public Settings()
         {
             InitializeComponent();
-            Screen[] allScreens = Screen.AllScreens;
-            for (int i = 0; i < allScreens.Length; i++) {
-                screens.Add("Display 0" + (i + 1), allScreens[i]);
-            }
-            ComboScreens.DataSource = new BindingSource(screens, null);
-            ComboScreens.DisplayMember = "Key";
-            ComboScreens.ValueMember = "Value";
-            LoadProperties();
-            manager = new FocusManager(this);
+            ReloadDisplays();
         }
 
         public void ShowSettings(Screen screen) {
@@ -42,6 +34,23 @@ namespace FocusMode
             return SliderOpacity.Value;
         }
 
+        private void ReloadDisplays() {
+            screens.Clear();
+            manager?.HideFocus();
+            // Delete cached screens
+            typeof(Screen).GetField("screens", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).SetValue(null, null);
+            
+            Screen[] allScreens = Screen.AllScreens;
+            for (int i = 0; i < allScreens.Length; i++) {
+                screens.Add("Display 0" + (i + 1), allScreens[i]);
+            }
+            ComboScreens.DataSource = new BindingSource(screens, null);
+            ComboScreens.DisplayMember = "Key";
+            ComboScreens.ValueMember = "Value";
+            LoadProperties();
+            manager = new FocusManager(this);
+        }
+
         private void ResetWindowLocation(Screen screen)
         {
             StartPosition = FormStartPosition.Manual;
@@ -51,6 +60,7 @@ namespace FocusMode
         }
 
         private Screen GetSelectedScreen() {
+            ReloadDisplays();
             return ((KeyValuePair<string, Screen>) ComboScreens.SelectedItem).Value;
         }
 
